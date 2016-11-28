@@ -4,6 +4,6 @@
 # Possible extras when feature complete could include, a indication of emmigration vs immigration(arrow direction),
 #   Region indication, arrow style, uptrend or downtrending level.
 
-getMap<- function(year,country){
+makeMap<- function(year,country){
   
 }

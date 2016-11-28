@@ -16,9 +16,6 @@ shinyUI(
                     )
       ),
       mainPanel(plotlyOutput("map"))
-    ),
-    hover = hoverOpts(
-      id = "country"
     )
   )
 )

@@ -4,8 +4,8 @@ library(plotly)
 library(ggplot2)
 source("drawMap.r")
 
-birthplaces<-read.csv("./data/USA_by_birthplace.csv",check.names=FALSE)
-regions<-read.csv("./data/USA_regions_birthplace.csv",check.names=FALSE)
+birthplaces<-read.csv("./data/USA_by_birthplace.csv",check.names=TRUE)
+regions<-read.csv("./data/USA_regions_birthplace.csv",check.names=TRUE)
 
 shinyServer(function(input, output, session) {
   # for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/

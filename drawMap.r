@@ -8,11 +8,12 @@
 #duplicate code for testing, put it in another file somewhere or whatever.
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]
-yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
 
-makeMap<- function(year,country){
+makeMap<- function(year){
   # give map some sort of an input id for hovering, it should be equal to "country" and should be the country name.
   # Draw a line to america from whatever country is hovered over.
   # remove country input if unneccessary
   map<-birthplaces %>% plot_geo() %>% add_trace(text = ~OdName,color=~paste0("X",year))
+  return(map)
 }

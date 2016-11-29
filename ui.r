@@ -1,10 +1,10 @@
 library(dplyr)
-
+library(plotly)
 
 # year data within birthplaces
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]
-yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
 # for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/
 shinyUI(
   fluidPage(

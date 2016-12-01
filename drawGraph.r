@@ -2,10 +2,11 @@
 library(dplyr)
 
 #duplicate code for testing, put it in another file somewhere or whatever.
-yearIndexes<-grep("X", colnames(birthplaces))
-yearTable<-birthplaces[c(1,3,yearIndexes)]
-yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
-
+setYearData<-function(){
+  yearIndexes<-grep("X", colnames(birthplaces))
+  yearTable<-birthplaces[c(1,3,yearIndexes)]
+  yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
+}
 getCountrySum<-function(){
   #returns The total immigration of each country.
   yearData<-data.frame(birthplaces[yearIndexes],stringsAsFactors=FALSE)
@@ -16,6 +17,10 @@ getCountrySum<-function(){
 test.df<-getCountrySum()
 
 getCountrySumGraph<-function(){
+  
+  yearIndexes<-grep("X", colnames(birthplaces))
+  yearTable<-birthplaces[c(1,3,yearIndexes)]
+  
   country.names<-as.vector(yearTable$OdName)
   by.years<-as.data.frame(t(yearTable[3:length(yearTable)]))
   by.years<-cbind(year=rownames(by.years),by.years)

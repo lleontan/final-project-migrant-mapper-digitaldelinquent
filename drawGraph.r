@@ -22,19 +22,19 @@ getCountrySumGraph<-function(){
   by.years$year<-gsub(pattern="X",x=by.years$year,replacement="")
   colnames(by.years)<-c("year",country.names)
   #rownames(by.years)<-yearTable$OdName
-  plot_ly(
-    yearTable,
-    x = ~ state,
-    y = ~ injured,
+  p<-plot_ly(
+    by.years,
+    x = ~ year,
+    y = ~ Afghanistan,
     type = 'bar',
-    name = 'Injured'
-  ) %>%
-    add_trace(y = ~ killed, name = 'Killed',colors="#df4154") %>%
-    layout(
-      yaxis = list(title = 'Casualties'),
-      xaxis = list(title = "State") ,
-      barmode = 'stack'
-    ) %>% 
+    name = 'Migrants'
+  ) %>% 
     layout(title = paste0("Total Immigration Since 1980"))
-  
+  for(i in 2:ncol(by.years)){
+   p<- add_trace(y = ~ by.years[i], name = colnames(by.years)[i]) %>%
+    layout(
+      barmode = 'stack'
+    )
+  }
+  return(p)
 }

@@ -16,10 +16,10 @@ getCountrySum<-function(){
 }
 test.df<-getCountrySum()
 
-getCountrySumGraph<-function(){
-  
+getCountrySumGraph<-function(birthplaces ,year){
   yearIndexes<-grep("X", colnames(birthplaces))
   yearTable<-birthplaces[c(1,3,yearIndexes)]
+  yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
   
   country.names<-as.vector(yearTable$OdName)
   by.years<-as.data.frame(t(yearTable[3:length(yearTable)]))
@@ -36,7 +36,7 @@ getCountrySumGraph<-function(){
   ) %>% 
     layout(title = paste0("Total Immigration Since 1980"))
   for(i in 2:ncol(by.years)){
-   p<- add_trace(y = ~ by.years[i], name = colnames(by.years)[i]) %>%
+   p<- p %>% add_trace(y = ~ by.years[i], name = colnames(by.years)[i]) %>%
     layout(
       barmode = 'stack'
     )

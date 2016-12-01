@@ -4,12 +4,8 @@ library(plotly)
 # year data within birthplaces
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]
-<<<<<<< f6101b5e49412a63e0d3da80657541e3dcd7ab4c
 yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
-=======
-yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
 
->>>>>>> Finish general appearance of shiny app
 # for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/
 shinyUI(navbarPage("MigrantMapper by Digital Deliquents",
                    inverse = TRUE,
@@ -22,7 +18,7 @@ shinyUI(navbarPage("MigrantMapper by Digital Deliquents",
                               position = "right",
                               
                               sidebarPanel(
-                                # Widget
+                                # add Widget
                               ),
                               
                               mainPanel(
@@ -56,7 +52,7 @@ shinyUI(navbarPage("MigrantMapper by Digital Deliquents",
                               position = "right",
                               
                               sidebarPanel(
-                                # Widget
+                                # add Widget
                                 
                               ),
                               
@@ -76,7 +72,7 @@ shinyUI(navbarPage("MigrantMapper by Digital Deliquents",
                               position = "right",
                               
                               sidebarPanel(
-                                # Widget
+                                # ADD Widget
                                 
                               ),
                               

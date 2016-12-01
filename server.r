@@ -11,10 +11,6 @@ shinyServer(function(input, output, session) {
   # for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/
   #for now renders a plotly, change to whatever whenever the map is done
   output$map <- renderPlotly({
-<<<<<<< f6101b5e49412a63e0d3da80657541e3dcd7ab4c
-    makeMap(input$year)
-=======
-    return(makeMap())
->>>>>>> Finish general appearance of shiny app
+    return(makeMap(input$year))
   })
 })

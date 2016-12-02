@@ -40,12 +40,9 @@ getCountrySumGraph<-function(regions ,year){
     type = 'bar',
     name = 'Migrants'
   ) %>% 
-    layout(title = paste0("Total Immigration Since 1980"))
+    layout(title = paste0("Total Immigration Since 1980"),barmode="stack")
   for(i in 2:ncol(by.years)){
-   p<- p %>% add_trace(y = ~ by.years[,i], name = colnames(by.years)[i]) %>%
-    layout(
-      barmode = 'stack'
-    )
+   p<- p %>% add_trace(y =  by.years[,i], name = colnames(by.years)[i],showlegend = FALSE)
   }
   return(p)
 }

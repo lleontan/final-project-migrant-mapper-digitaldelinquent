@@ -16,8 +16,8 @@ shinyUI(
     includeCSS('style.css'),
     sidebarLayout(
                   position = "right",
-                  sidebarPanel(
-                    # add Widget
+                  sliderInput(inputId="mapYear", "Year", 
+                              min=yearNames[1], max=yearNames[length(yearNames)], value=yearNames[1]
                   ),
                   mainPanel(
                     h3("General Information about Immigration in USA", align = "center"),
@@ -53,14 +53,13 @@ shinyUI(
                 includeCSS('style.css'),
                 sidebarLayout(
                   position = "right",
-                  sidebarPanel(
-                    # ADD Widget
+                  sliderInput(inputId="barYear", "Year", 
+                              min=yearNames[1], max=yearNames[length(yearNames)], value=yearNames[1]
                   ),
                   mainPanel(
                     plotlyOutput("countrySumChart")
                   )
                 )
-                
     )
   )
 )

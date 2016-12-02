@@ -14,9 +14,9 @@ shinyServer(function(input, output, session) {
   birthplaces<-read.csv("./data/USA_by_birthplace.csv")
   
   output$map <- renderPlotly({
-    return(makeMap(input$year))
+    return(makeMap(input$mapYear))
   })
   output$countrySumChart<-renderPlotly({
-    return(getCountrySumGraph(birthplaces,input$year))
+    getCountrySumGraph(regions,input$barYear)
   })
 })

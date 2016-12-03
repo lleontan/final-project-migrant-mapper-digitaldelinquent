@@ -14,22 +14,23 @@ getCountrySum<-function(){
   new.data$mag<- rowSums(regions[yearIndexes], na.rm=TRUE)
   return(new.data)
 }
-getCountrySumGraph<-function(regions ,year){
+getCountrySumGraph<-function(regions ,selectedYear){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
   region.year.indexes<-grep("X", colnames(regions))
   region.year.table<-regions[c(1,3,4,region.year.indexes)] %>%  filter(!grepl("Total",AreaName))
   region.year.table <- region.year.table[,colSums(is.na(region.year.table))<nrow(region.year.table)]
   
-  region.year.names<-as.numeric(gsub("X",x=colnames(region.year.table[4:length(region.year.table)]), replacement=""))
+  region.year.names<-as.numeric(gsub("X",x=colnames(region.year.table[3:length(region.year.table)]), replacement=""))
   
   country.names<-as.vector(region.year.table$RegName)
-  by.years<-as.data.frame(t(region.year.table[5:length(region.year.table)]))
+  by.years<-as.data.frame(t(region.year.table[4:length(region.year.table)]))
   test.df<<-by.years
 
   by.years<-cbind(year=rownames(by.years),by.years)
   by.years$year<-gsub(pattern="X",x=by.years$year,replacement="")
   colnames(by.years)<-c("year",country.names)
+  by.years<-by.years #%>% filter(year==selectedYear)
   test.df2<<-by.years
   
   #rownames(by.years)<-yearTable$OdName
@@ -41,6 +42,7 @@ getCountrySumGraph<-function(regions ,year){
     name = 'Migrants'
   ) %>% 
     layout(title = paste0("Total Immigration Since 1980"),barmode="stack",
+           hovermode="closest",
            yaxis=list(
              title = "Total People"
            ))

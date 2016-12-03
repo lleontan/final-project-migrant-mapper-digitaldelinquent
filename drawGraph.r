@@ -8,7 +8,7 @@ setYearData<-function(){
   yearNames<<-as.numeric(gsub("X",x=colnames(regions[yearIndexes]), replacement=""))
 }
 getCountrySum<-function(){
-  #returns The total immigration of each country.
+  #Returns The total immigration of each country.
   yearData<-data.frame(regions[yearIndexes],stringsAsFactors=FALSE)
   new.data<-regions %>% select(OdName,Type)
   new.data$mag<- rowSums(regions[yearIndexes], na.rm=TRUE)
@@ -25,26 +25,29 @@ getCountrySumGraph<-function(regions ,selectedYear){
   
   country.names<-as.vector(region.year.table$RegName)
   by.years<-as.data.frame(t(region.year.table[4:length(region.year.table)]))
-  test.df<<-by.years
 
   by.years<-cbind(year=rownames(by.years),by.years)
   by.years$year<-gsub(pattern="X",x=by.years$year,replacement="")
   colnames(by.years)<-c("year",country.names)
   by.years<-by.years #%>% filter(year==selectedYear)
-  test.df2<<-by.years
-  
+
   #rownames(by.years)<-yearTable$OdName
   p<-plot_ly(
     by.years,
     x = ~ year,
     y = ~ by.years[1],
     type = 'bar',
-    name = 'Migrants'
+    showlegend = FALSE
   ) %>% 
-    layout(title = paste0("Total Immigration Since 1980"),barmode="stack",
+    layout(title = paste0("US Immigration Since 1980"),barmode="stack",
            hovermode="closest",
+           xaxis=list(
+             tickangle = 55,
+             ticks = "outside",
+             ticklen = 2
+           ),
            yaxis=list(
-             title = "Total People"
+             title = "Immigrants"
            ))
   for(i in 2:ncol(by.years)){
    p<- p %>% add_trace(y =  by.years[,i], name = colnames(by.years)[i],showlegend = FALSE)

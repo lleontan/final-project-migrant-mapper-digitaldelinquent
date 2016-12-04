@@ -47,10 +47,18 @@ shinyUI(
                  "Year", 
                  min=yearNames[1], 
                  max=yearNames[length(yearNames)],
-                 value = yearNames[1]
+                 value = yearNames[1],
                  # add Widget
+                 sliderInput(inputId="pie.country.count",
+                             "Countries", 
+                             min=1, 
+                             max=30,
+                             value = 1,
+                             animate=TRUE
+                 )
                ),
                mainPanel(
+                 plotlyOutput("total.pie.chart")
                )
              )
     ),

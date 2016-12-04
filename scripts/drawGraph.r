@@ -7,18 +7,43 @@ setYearData<-function(){
   yearTable<<-regions[c(1,3,yearIndexes)]
   yearNames<<-as.numeric(gsub("X",x=colnames(regions[yearIndexes]), replacement=""))
 }
+grepYearIndexes<-function(data.set){
+  #returns vector of year indexes
+  return(grep("X", colnames(data.set)))
+}
 getCountrySum<-function(){
   #Returns The total immigration of each country.
-  new.data<-data.frame(birthplaces[,c(1,3,5,birthplaces.year.indexes)],stringsAsFactors=FALSE)
+  new.data<-data.frame(birthplaces[,c(1,3,5,grepYearIndexes(birthplaces))],stringsAsFactors=FALSE)
   new.data$mag<- rowSums(new.data[grep("X", colnames(new.data))], na.rm=TRUE)
   new.data<-new.data %>% arrange(-mag)
   return(new.data)
 }
-largestContributorsGraph<-function(){
+largestContributorsGraph<-function(countries.count){
+  countries.count=countries.count+1
+  show.percent="percent"
+  if(countries.count>20){
+    show.percent = "none"
+  }
   countries<-getCountrySum()
-  worldData<- countries %>% filter(AreaName!="World")
-  top.countries<-worldData[1:5,]
-  
+  worldData<- countries %>% filter(OdName=="Total")
+  top.countries<-countries[1:countries.count,] %>% filter(OdName!="Total")
+  top.countries.indexes<-c(grep("X", colnames(top.countries)),length(top.countries))
+  worldData[top.countries.indexes]<-
+    worldData[top.countries.indexes]-
+    colSums(top.countries[top.countries.indexes],na.rm = TRUE)
+  worldData$OdName<-"All Other"
+  top.countries<-rbind(worldData,top.countries)
+  p<-plot_ly(top.countries,
+             labels=~OdName,
+             values=~mag,
+             type="pie",
+             showlegend = FALSE,
+             textinfo=show.percent
+            ) %>%
+    layout(title = 'Immigration proportions since 1980',
+           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  return(p)
 }
 getCountrySumGraph<-function(regions){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))

@@ -7,3 +7,4 @@ Resources Used
 * [Hovering in shiny](https://gallery.shinyapps.io/093-plot-interaction-basic/)
 * [NA cols](http://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na)
 * [Multiple Trace](https://plot.ly/r/graphing-multiple-chart-types/)
+* [pie-charts](https://plot.ly/r/pie-charts/)

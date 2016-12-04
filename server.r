@@ -19,7 +19,9 @@ shinyServer(function(input, output, session) {
   output$map <- renderPlotly({
     return(BuildMap_shiwen(birthplaces,input$mapYear))
   })
-  
+  output$total.pie.chart<-renderPlotly({
+    largestContributorsGraph(input$pie.country.count)
+  })
   output$countrySumChart<-renderPlotly({
     getCountrySumGraph(regions)
   })

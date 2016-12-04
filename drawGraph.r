@@ -28,7 +28,8 @@ getCountrySumGraph<-function(regions ,selectedYear){
 
   by.years<-cbind(year=rownames(by.years),by.years)
   by.years$year<-gsub(pattern="X",x=by.years$year,replacement="")
-  colnames(by.years)<-c("year",country.names)
+  by.years$sum<-rowSums(by.years[,3:length(by.years)],na.rm = TRUE)
+  colnames(by.years)<-c("year",country.names,"sum")
   by.years<-by.years #%>% filter(year==selectedYear)
 
   #rownames(by.years)<-yearTable$OdName
@@ -38,7 +39,15 @@ getCountrySumGraph<-function(regions ,selectedYear){
     y = ~ by.years[1],
     type = 'bar',
     showlegend = FALSE
-  ) %>% 
+  ) %>%
+    add_trace(
+      x=~year,
+      y=~sum,
+      type = 'scatter',
+      mode = 'lines',
+      name = 'Trend',
+      line = list(color = '#45171D')
+      )%>% 
     layout(title = paste0("US Immigration Since 1980"),barmode="stack",
            hovermode="closest",
            xaxis=list(
@@ -49,7 +58,8 @@ getCountrySumGraph<-function(regions ,selectedYear){
            yaxis=list(
              title = "Immigrants"
            ))
-  for(i in 2:ncol(by.years)){
+  colRange<-2:(ncol(by.years)-1)
+  for(i in colRange){
    p<- p %>% add_trace(y =  by.years[,i], name = colnames(by.years)[i],showlegend = FALSE)
   }
   return(p)

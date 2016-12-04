@@ -9,10 +9,16 @@ setYearData<-function(){
 }
 getCountrySum<-function(){
   #Returns The total immigration of each country.
-  yearData<-data.frame(regions[yearIndexes],stringsAsFactors=FALSE)
-  new.data<-regions %>% select(OdName,Type)
-  new.data$mag<- rowSums(regions[yearIndexes], na.rm=TRUE)
+  new.data<-data.frame(birthplaces[,c(1,3,5,birthplaces.year.indexes)],stringsAsFactors=FALSE)
+  new.data$mag<- rowSums(new.data[grep("X", colnames(new.data))], na.rm=TRUE)
+  new.data<-new.data %>% arrange(-mag)
   return(new.data)
+}
+largestContributorsGraph<-function(){
+  countries<-getCountrySum()
+  worldData<- countries %>% filter(AreaName!="World")
+  top.countries<-worldData[1:5,]
+  
 }
 getCountrySumGraph<-function(regions ,selectedYear){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))

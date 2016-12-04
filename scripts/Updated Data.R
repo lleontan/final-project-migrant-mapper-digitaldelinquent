@@ -1,5 +1,5 @@
 # Reads in the file
-data <- read.csv("/Users/benkelleran/Desktop/info201/final-project-migrant-mapper-digitaldelinquent/data/USA_by_birthplace.csv")
+data <- read.csv("./data/USA_by_birthplace.csv")
 
 # Adds the country code for all of the countries
 data["Country_Code"] <- NA

@@ -14,7 +14,7 @@ getCountrySum<-function(){
   new.data$mag<- rowSums(regions[yearIndexes], na.rm=TRUE)
   return(new.data)
 }
-getCountrySumGraph<-function(regions ,selectedYear){
+getCountrySumGraph<-function(regions){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
   region.year.indexes<-grep("X", colnames(regions))
@@ -53,6 +53,7 @@ getCountrySumGraph<-function(regions ,selectedYear){
     layout(title = paste0("US Immigration Since 1980"),barmode="stack",
            hovermode="closest",
            xaxis=list(
+             title = '',
              tickangle = 55,
              ticks = "outside",
              ticklen = 2

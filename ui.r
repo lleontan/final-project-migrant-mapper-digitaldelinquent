@@ -22,17 +22,12 @@ shinyUI(
                   mainPanel(
                     h3("General Information about Immigration in USA", align = "center"),
                     br(),
-                    p("These days, immigration has grown into a controversial issue among United State. 
-                      In order to better understand this situation, we’re using America immigration data 
-                      from the During United Nations Population Division of the Department of Economic and 
-                      Social Affairs (DESA) to chart migration changes overtime to inform the general public 
-                      about the realistic scale and trends of worldwide immigration in order to challenge 
-                      preconceived notions about the issue. This data is of huge significance to many people, 
-                      especially for those sociologists who are interested in the influence of immigrant to 
-                      society. By comparing the growth of the population of immigrant with economic gain and 
-                      crime rate, sociologists are provided with useful tool to draw a big picture about how 
-                      immigrant has influenced the development of a country, which can help government to make 
-                      better immigrant policy in the future."), 
+                    p("Immigration has has become a hot button issue in the United States.
+                      Using data from the United Nations Population Division of the Department of Economic and 
+                      Social Affairs (DESA) we've attempted to chart global migration patterns
+                      to show the realistic scale and trends of worldwide immigration. We hope that
+                      by showing the realities of immigration we may challenge preconceived
+                      notions about the issue."), 
                     plotlyOutput("map")
                   )
                 )

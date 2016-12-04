@@ -20,7 +20,7 @@ largestContributorsGraph<-function(){
   top.countries<-worldData[1:5,]
   
 }
-getCountrySumGraph<-function(regions ,selectedYear){
+getCountrySumGraph<-function(regions){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
   region.year.indexes<-grep("X", colnames(regions))
@@ -59,6 +59,7 @@ getCountrySumGraph<-function(regions ,selectedYear){
     layout(title = paste0("US Immigration Since 1980"),barmode="stack",
            hovermode="closest",
            xaxis=list(
+             title = '',
              tickangle = 55,
              ticks = "outside",
              ticklen = 2

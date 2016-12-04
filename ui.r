@@ -29,7 +29,7 @@ shinyUI(
                  h3("General Information about Immigration in USA", 
                     align = "center"),
                  br(),
-                 p("Immigration has has become a hot button issue in the United States.
+                 p("Immigration has become a hot button issue in the United States.
                    Using data from the United Nations Population Division of the Department of Economic and 
                    Social Affairs (DESA) we've attempted to chart global migration patterns
                    to show the realistic scale and trends of worldwide immigration. We hope that
@@ -77,7 +77,7 @@ shinyUI(
                br(),
                p("The data throughout this website comes from", tags$a(href="http://www.un.org/en/development/desa/population/migration/data/empirical2/migrationflows.shtml", "UN Immigration Data"),
                  ". Migration statistics are important for the design of sensible migration policies, as immigrants can exert huge influence on social stability and economic development of United State.
-                   By comparing the amount of immigrants flowing into US and economic gain of USA, it sheds light on the issue that whether migration has positive or negative impact to this country."),
+                 By comparing the amount of immigrants flowing into US and economic gain of USA, it sheds light on the issue that whether migration has positive or negative impact to this country."),
                hr(),
                h3("Developers")
              ),
@@ -88,6 +88,5 @@ shinyUI(
     )
   )
 )
-
 
 

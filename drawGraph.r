@@ -20,7 +20,7 @@ getCountrySumGraph<-function(regions ,selectedYear){
   region.year.indexes<-grep("X", colnames(regions))
   region.year.table<-regions[c(1,3,4,region.year.indexes)] %>% 
     filter(!grepl("Total",AreaName)) %>% 
-    arrange(X1991)
+    arrange(X2012)
   region.year.table <- region.year.table[,colSums(is.na(region.year.table))<nrow(region.year.table)]
   
   region.year.names<-as.numeric(gsub("X",x=colnames(region.year.table[3:length(region.year.table)]), replacement=""))

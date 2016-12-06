@@ -1,4 +1,3 @@
-
 library(dplyr)
 
 #duplicate code for testing, put it in another file somewhere or whatever.
@@ -11,20 +10,20 @@ grepYearIndexes<-function(data.set){
   #returns vector of year indexes
   return(grep("X", colnames(data.set)))
 }
-getCountrySum<-function(){
+getCountrySum<-function(birthplaces){
   #Returns The total immigration of each country.
   new.data<-data.frame(birthplaces[,c(1,3,5,9,grepYearIndexes(birthplaces))],stringsAsFactors=FALSE)
   new.data$mag<- rowSums(new.data[grep("X", colnames(new.data))], na.rm=TRUE)
   new.data<-new.data %>% arrange(-mag)
   return(new.data)
 }
-largestContributorsGraph<-function(countries.count){
+largestContributorsGraph<-function(countries.count, birthplaces){
   countries.count=countries.count+1
   show.percent="percent"
   if(countries.count>22){
     show.percent = "none"
   }
-  countries<-getCountrySum()
+  countries <<- getCountrySum(birthplaces)
   worldData<- countries %>% filter(OdName=="Total")
   top.countries<-countries[1:countries.count,] %>% filter(OdName!="Total")
   top.countries.indexes<-c(grep("X", colnames(top.countries)),length(top.countries))
@@ -45,6 +44,7 @@ largestContributorsGraph<-function(countries.count){
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return(p)
 }
+
 getCountrySumGraph<-function(regions){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
@@ -111,4 +111,15 @@ getCountrySumGraph<-function(regions){
   }
   
   return(p)
+}
+
+getCountryInformation <- function(country) {
+  if (is.element(country, countries$OdName)) {
+    target.country <- filter(countries, OdName == country)
+    info <- paste0("There were ", target.country$mag," immigrants from ", country," between the years of 1980-2013. The nation of ", country," is a ", target.country$DevName," country
+      in ", target.country$AreaName, ".")
+    return(info)
+  } else {
+    return("Not a valid country name! Try again!")
+  }
 }

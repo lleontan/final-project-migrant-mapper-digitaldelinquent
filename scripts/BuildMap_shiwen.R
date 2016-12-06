@@ -22,6 +22,7 @@ BuildMap_shiwen <- function(d,year){
       z = ~population, 
       zmin = 0,
       zmax = 10000,
+      hoverinfo = "text",
       text = ~hover, 
       locations = ~Country_Code,
       color = n,

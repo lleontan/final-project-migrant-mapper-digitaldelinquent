@@ -1,0 +1,512 @@
+data[212, 'Country_Code'] <- 'VUT'
+data[213, 'Country_Code'] <- 'VEN'
+data[214, 'Country_Code'] <- 'VNM'
+data[215, 'Country_Code'] <- 'WLF'
+data[216, 'Country_Code'] <- 'ESH'
+data[217, 'Country_Code'] <- 'YEM'
+data[218, 'Country_Code'] <- 'ZMB'
+data[219, 'Country_Code'] <- 'ZWE'
+source("./scripts/Updated Data.R")
+library(dplyr)
+library(plotly)
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~year, text = ~OdName, locations = ~code,
+color = ~year, colors = 'Purples'
+) %>%
+colorbar(title = "Population") %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(data,'1981')
+birthplaces<- data
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~year, text = ~OdName, locations = ~Country_Code,
+color = ~year, colors = 'Purples'
+) %>%
+colorbar(title = "Population") %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~year, text = ~OdName, locations = ~Country_Code,
+color = ~year, colors = 'Purples'
+) %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = input$year, text = ~OdName, locations = ~Country_Code,
+color = input$year, colors = 'Purples'
+) %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+data <- mutate_(data,population = year)
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population, text = ~OdName, locations = ~Country_Code,
+color = ~population, colors = 'Purples'
+) %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(data,year){
+yearIndexes<-grep("X", colnames(birthplaces))
+yearNames<-gsub("X",x=colnames(birthplaces[yearIndexes]), replacement="")
+colnames(data)[10:43] <- yearNames
+data <- mutate_(data,population = year)
+g <- list(
+showlakes = TRUE,
+lakecolor = toRGB('white')
+)
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population, text = ~OdName, locations = ~Country_Code, color = ~population
+) %>%
+colorbar(title = 'Population') %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+shiny::runApp()
+runApp()
+library(dplyr)
+library(shiny)
+library(plotly)
+library(ggplot2)
+source("./scripts/BuildMap_shiwen.R")
+source("./scripts/Updated Data.R")
+birthplaces<- data
+regions<-read.csv("./data/USA_regions_birthplace.csv",check.names=TRUE)
+shinyServer(function(input, output, session) {
+birthplaces <- data
+# for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/
+#for now renders a plotly, change to whatever whenever the map is done
+output$map <- renderPlotly({
+return(BuildMap_shiwen(birthplaces,input$mapYear))
+})
+})
+runApp()
+shiny::runApp()
+runApp()
+library(dplyr)
+library(plotly)
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = data$population,
+colorscale = "YlOrRd",
+reversescale = TRUE,
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+library(dplyr)
+library(plotly)
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = data$population,
+colorscale = "YlOrRd",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+library(ReColorBrewer)
+install.packages('ReColorBrewer')
+library(ReColorBrewer)
+install.packages('ReColorBrewer')
+library(ReColorBrewer)
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = data$population,
+colorscale = "YlOrRds",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap(birthplaces,'1981')
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = data$population,
+colorscale = "YlOrRd",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = data$population,
+colorscale = "Reds",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+n <- as.character(data$population)
+n <- as.numeric(n)
+n <- is.na(n)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = n,
+colorscale = "Reds",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+library(dplyr)
+library(plotly)
+BuildMap_shiwen <- function(d,year){
+l <- list(color = toRGB("grey"), width = 0.5)
+year <- paste0("X",year)
+data <- mutate_(data,population = year)
+n <- as.character(data$population)
+n <- as.numeric(n)
+n <- is.na(n)
+g <- list(
+showframe = FALSE,
+showcoastlines = FALSE,
+projection = list(type = 'Mercator')
+)
+data$hover <- with(data,paste(OdName,'<br>',"Population",population))
+p <- data %>%
+plot_geo() %>%
+add_trace(
+z = ~population,
+zmin = 0,
+zmax = 10000,
+text = ~hover,
+locations = ~Country_Code,
+color = n,
+colors = "Blues",
+colorbar = list(
+ticklen = 5,
+len = 1,
+title = "Population"),
+marker = list(line = l)
+)  %>%
+layout(
+title = 'Where they come from<br>(Hover for breakdown)',
+geo = g
+)
+return(p)
+}
+BuildMap_shiwen(birthplaces,'1981')
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+shiny::runApp()
+library(dplyr)
+#duplicate code for testing, put it in another file somewhere or whatever.
+setYearData<-function(){
+yearIndexes<<-grep("X", colnames(regions))
+yearTable<<-regions[c(1,3,yearIndexes)]
+yearNames<<-as.numeric(gsub("X",x=colnames(regions[yearIndexes]), replacement=""))
+}
+getCountrySum<-function(){
+#Returns The total immigration of each country.
+yearData<-data.frame(regions[yearIndexes],stringsAsFactors=FALSE)
+new.data<-regions %>% select(OdName,Type)
+new.data$mag<- rowSums(regions[yearIndexes], na.rm=TRUE)
+return(new.data)
+}
+getCountrySumGraph<-function(regions ,selectedYear){
+full.regions<<-regions %>% filter(grepl("Total",AreaName))
+region.year.indexes<-grep("X", colnames(regions))
+region.year.table<-regions[c(1,3,4,region.year.indexes)] %>%
+filter(!grepl("Total",AreaName)) %>%
+arrange(X2012)
+region.year.table <- region.year.table[,colSums(is.na(region.year.table))<nrow(region.year.table)]
+region.year.names<-as.numeric(gsub("X",x=colnames(region.year.table[3:length(region.year.table)]), replacement=""))
+country.names<-as.vector(region.year.table$RegName)
+by.years<-as.data.frame(t(region.year.table[4:length(region.year.table)]))
+by.years<-cbind(year=rownames(by.years),by.years)
+by.years$year<-gsub(pattern="X",x=by.years$year,replacement="")
+by.years$sum<-rowSums(by.years[,3:length(by.years)],na.rm = TRUE)
+colnames(by.years)<-c("year",country.names,"sum")
+by.years<-by.years #%>% filter(year==selectedYear)
+#rownames(by.years)<-yearTable$OdName
+p<-plot_ly(
+by.years,
+x = ~ year,
+y = ~ by.years[1],
+type = 'bar',
+showlegend = FALSE
+) %>%
+add_trace(
+x=~year,
+y=~sum,
+type = 'scatter',
+mode = 'lines',
+name = '',
+line = list(color = '#45171D')
+)%>%
+layout(title = paste0("US Immigration Since 1980"),barmode="stack",
+hovermode="closest",
+xaxis=list(
+tickangle = 55,
+ticks = "outside",
+ticklen = 2
+),
+yaxis=list(
+title = "Immigrants"
+))
+colRange<-2:(ncol(by.years)-1)
+for(i in colRange){
+p<- p %>% add_trace(y =  by.years[,i], name = colnames(by.years)[i],showlegend = FALSE)
+}
+return(p)
+}
+getCountrySumGraph(regions,'1981')
+getCountrySum(regions,'1981')
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+shiny::runApp()
+shiny::runApp()
+shiny::runApp()
+shiny::runApp()
+shiny::runApp()
+runApp()
+runApp()
+runApp()
+runApp()

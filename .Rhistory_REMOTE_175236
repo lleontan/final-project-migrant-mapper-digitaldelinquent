@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-data[212, 'Country_Code'] <- 'VUT'
-data[213, 'Country_Code'] <- 'VEN'
-data[214, 'Country_Code'] <- 'VNM'
-data[215, 'Country_Code'] <- 'WLF'
-data[216, 'Country_Code'] <- 'ESH'
-data[217, 'Country_Code'] <- 'YEM'
-data[218, 'Country_Code'] <- 'ZMB'
-data[219, 'Country_Code'] <- 'ZWE'
-source("./scripts/Updated Data.R")
-library(dplyr)
-=======
 <<<<<<< 6d77e52455f87cc90fda148323413773c240ab2c
 =======
 # create a variable and pass in the plot_ly function that takes in
@@ -48,7 +36,6 @@ graphic <- plot_ly(midwest, x = ~percollege, type = 'box', color = ~state)
 # layout() function and add a title for the graph, set the yaxis2 to the previous
 # variable and have a title for the xaxis
 # Install Plotly
->>>>>>> 4253f4b421b911b7da6511f554da276763a44af2
 library(plotly)
 # Use the plot_ly function to test it out and see that it is working
 # create a variable and pass in the plot_ly function that takes in
@@ -523,25 +510,16 @@ runApp()
 runApp('~/Documents/info201/m14-shiny/exercise-4')
 runApp()
 shiny::runApp()
-<<<<<<< HEAD
-shiny::runApp()
-shiny::runApp()
-shiny::runApp()
-shiny::runApp()
-=======
 runApp()
 shiny::runApp()
 runApp()
 <<<<<<< 6d77e52455f87cc90fda148323413773c240ab2c
 shiny::runApp()
 shiny::runApp()
->>>>>>> 4253f4b421b911b7da6511f554da276763a44af2
 runApp()
 runApp()
 runApp()
 runApp()
-<<<<<<< HEAD
-=======
 runApp()
 runApp()
 runApp()
@@ -566,4 +544,3 @@ runApp()
 runApp()
 =======
 >>>>>>> Local change
->>>>>>> 4253f4b421b911b7da6511f554da276763a44af2

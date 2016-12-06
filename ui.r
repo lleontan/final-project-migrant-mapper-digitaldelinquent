@@ -14,35 +14,35 @@ shinyUI(
     "MigrantMapper by Digital Deliquents",
     inverse = TRUE,
     tabPanel('Overview',
-             includeCSS('./data/style.css'),
              sidebarLayout(
                position = "right",
-               sliderInput(inputId="mapYear",
-                           "Year", 
-                           min=yearNames[1], 
-                           max=yearNames[length(yearNames)],
-                           value = yearNames[1],
-                           animate=TRUE
+               sidebarPanel(
+                 sliderInput(inputId="mapYear",
+                             "Year", 
+                             min=yearNames[1], 
+                             max=yearNames[length(yearNames)],
+                             value = yearNames[1],
+                             animate=TRUE
+                 )
                ),
                mainPanel(
                  h3("General Information about Immigration in USA", 
                     align = "center"),
                  br(),
-                 p("Immigration has has become a hot button issue in the United States.
+                 p("Immigration has become a hot button issue in the United States.
                    Using data from the United Nations Population Division of the Department of Economic and 
                    Social Affairs (DESA) we've attempted to chart global migration patterns
                    to show the realistic scale and trends of worldwide immigration. We hope that
                    by showing the realities of immigration we may challenge preconceived
                    notions about the issue."), 
                  plotlyOutput("map")
-                 )
                )
-               ),
+             )
+    ),
     tabPanel("Map",
-             includeCSS('./data/style.css'),
              sidebarLayout(
+               position = "right",
                sidebarPanel(
-                 position = "right",
                  inputId="mapYear", 
                  "Year", 
                  min=yearNames[1], 
@@ -64,13 +64,29 @@ shinyUI(
     ),
     
     tabPanel("Plot",
-             includeCSS('./data/style.css'),
-               mainPanel(
-                 plotlyOutput("countrySumChart")
-          )
-       )
+             mainPanel(
+               plotlyOutput("countrySumChart")
+             )
+    ),
+    
+    tabPanel("About",
+             mainPanel(
+               h1("Project Description"),
+               hr(),
+               h3("Why does immigration matters?"),
+               br(),
+               p("The data throughout this website comes from", tags$a(href="http://www.un.org/en/development/desa/population/migration/data/empirical2/migrationflows.shtml", "UN Immigration Data"),
+                 ". Migration statistics are important for the design of sensible migration policies, as immigrants can exert huge influence on social stability and economic development of United State.
+                 By comparing the amount of immigrants flowing into US and economic gain of USA, it sheds light on the issue that whether migration has positive or negative impact to this country."),
+               hr(),
+               h3("Developers")
+             ),
+             
+             fluidRow(
+               img(src="http://nebula.wsimg.com/28e334a7d5626b9fe824f3b720ebf58f?AccessKeyId=D2AC8955135E87ED9D4F&disposition=0&alloworigin=1", width = "250px")
+             )
     )
+  )
 )
-               
 
 

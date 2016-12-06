@@ -52,7 +52,7 @@ shinyUI(
                  sliderInput(inputId="pie.country.count",
                              "Countries", 
                              min=1, 
-                             max=30,
+                             max=20,
                              value = 1,
                              animate=TRUE
                  )

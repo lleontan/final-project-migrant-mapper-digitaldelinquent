@@ -1,8 +1,9 @@
 library(plotly)
+library(dplyr)
 
 SearchByCountry <- function(d,country){
   yearIndexes<-grep("X", colnames(d))
-  yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
+  yearNames<-as.numeric(gsub("X",x=colnames(d[yearIndexes]), replacement=""))
   
   d <- d %>%
        filter(OdName == country)

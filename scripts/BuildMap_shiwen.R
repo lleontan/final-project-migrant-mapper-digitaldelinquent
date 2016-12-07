@@ -30,10 +30,10 @@ BuildMap_shiwen <- function(d,year){
       colorscale = "YlOrRd",
       reversescale = TRUE,
       colorbar = list(
-      thickness = 20,  
-      ticklen = 5,
-      len = 1,
-      title = "Population"),
+                      thickness = 20,  
+                      ticklen = 5,
+                      len = 1,
+                      title = "Population"),
       marker = list(line = l)
     )  %>%
     layout(

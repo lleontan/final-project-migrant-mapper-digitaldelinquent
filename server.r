@@ -6,6 +6,7 @@ library(ggplot2)
 source("./scripts/BuildMap_shiwen.R")
 source("./scripts/Updated Data.R")
 source("./scripts/drawGraph.r")
+source("./scripts/SearchByCountry.R")
 
 regions<-read.csv("./data/USA_regions_birthplace.csv")
 birthplaces<-read.csv("./data/USA_by_birthplace.csv")
@@ -27,7 +28,7 @@ shinyServer(function(input, output, session) {
     getCountrySumGraph(regions)
   })
   
-  output$searchCountry<-renderText({
-    getCountryInformation(input$text)
+  output$searchCountry<-renderPlotly({
+    SearchByCountry(birthplaces,input$text)
   })
 })

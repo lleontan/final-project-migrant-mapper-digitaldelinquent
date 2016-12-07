@@ -44,7 +44,7 @@ shinyUI(
                )
              )
     ),
-    tabPanel("Map",
+    tabPanel("Details",
              sidebarLayout(
                position = "right",
                sidebarPanel(
@@ -57,9 +57,9 @@ shinyUI(
                              value = 15,
                              animate=TRUE
                  ),
-                 textInput("text",
+                 selectInput("text",
                            label = "Country",
-                           value = "Enter Country"
+                           choices = birthplaces$OdName
                  )
                ),
                mainPanel(
@@ -72,7 +72,9 @@ shinyUI(
                    immigration will be displayed on the pie chart."),
                  hr(),
                  h3("Immigrant of specific country"),
-                 p(textOutput("searchCountry"))
+                 br(),
+                 plotlyOutput("searchCountry"),
+                 br()
                )
              )
     ),

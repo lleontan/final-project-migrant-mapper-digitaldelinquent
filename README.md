@@ -8,3 +8,4 @@ Resources Used
 * [NA cols](http://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na)
 * [Multiple Trace](https://plot.ly/r/graphing-multiple-chart-types/)
 * [pie-charts](https://plot.ly/r/pie-charts/)
+* [piechartlabels](http://stackoverflow.com/questions/35002772/pie-chart-labels-cut-off)

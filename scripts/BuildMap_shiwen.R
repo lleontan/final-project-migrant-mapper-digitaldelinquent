@@ -8,6 +8,7 @@ BuildMap_shiwen <- function(d,year){
   n <- as.character(data$population)
   n <- as.numeric(n)
   n <- is.na(n)
+
   
   g <- list(
     showframe = FALSE,
@@ -28,6 +29,7 @@ BuildMap_shiwen <- function(d,year){
       colorscale = "YlOrRd",
       reversescale = TRUE,
       colorbar = list(
+      thickness = 20,  
       ticklen = 5,
       len = 1,
       title = "Population"),

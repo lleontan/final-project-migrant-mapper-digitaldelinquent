@@ -73,6 +73,7 @@ shinyUI(
                    immigration will be displayed on the pie chart."),
                  hr(),
                  h3("Immigrant of specific country"),
+                 p(textOutput("countryInfo")),
                  br(),
                  plotlyOutput("searchCountry"),
                  br()

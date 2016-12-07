@@ -31,4 +31,8 @@ shinyServer(function(input, output, session) {
   output$searchCountry<-renderPlotly({
     SearchByCountry(birthplaces,input$text)
   })
+  
+  output$countryInfo <- renderText({
+    getCountryInformation(input$text)
+  })
 })

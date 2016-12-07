@@ -16,13 +16,14 @@ SearchByCountry <- function(d,country){
   p <- plot_ly(m,
                x = ~yearNames,
                y = ~population,
-               text = country,
+               text = ~paste("Immigrant amount:",population, '<br> Year:', yearNames),
                type = "scatter",
                mode = "markers",
                color = ~population,
                colors = "Accent",
                size = ~population,
                sizes = c(3,35),
+               hoverinfo = "text",
                
                marker = list(
                              colorbar = list(
@@ -34,12 +35,13 @@ SearchByCountry <- function(d,country){
                              sizemode = "diameter",
                              opacity = 0.7
                )) %>%
-       layout(title = paste0("Imigrants change of ", country),
+       layout(title = paste0("Number of imigrants of ", country, " in each year"),
               xaxis = list(showgrid = FALSE,
                            ticklen = 3,
                            title = "year"),
               yaxis = list(showgrid = FALSE,
-                           ticklen = 3)
+                           ticklen = 3,
+                           title = "amount")
               )
                
   return(p)

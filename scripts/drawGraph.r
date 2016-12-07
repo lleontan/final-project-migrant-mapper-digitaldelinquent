@@ -114,12 +114,8 @@ getCountrySumGraph<-function(regions){
 }
 
 getCountryInformation <- function(country) {
-  if (is.element(country, countries$OdName)) {
-    target.country <- filter(countries, OdName == country)
-    info <- paste0("There were ", target.country$mag," immigrants from ", country," between the years of 1980-2013. The nation of ", country," is a ", target.country$DevName," country
-      in ", target.country$AreaName, ".")
-    return(info)
-  } else {
-    return("Not a valid country name! Try again!")
-  }
+  target.country <- filter(countries, OdName == country)
+  info <- paste0("The total amount of immigrants from ", country," between the years of 1980-2013 is ", target.country$mag,
+                 ". The nation of ", country," is a ", target.country$DevName," in ", target.country$AreaName, ".")
+  return(info)
 }

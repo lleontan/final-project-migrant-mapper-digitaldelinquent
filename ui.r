@@ -1,7 +1,8 @@
 library(dplyr)
 library(plotly)
 library(shiny)
-
+source("./scripts/Updated Data.R")
+birthplaces <- data
 
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]

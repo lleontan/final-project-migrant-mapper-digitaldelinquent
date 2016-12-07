@@ -41,7 +41,10 @@ shinyUI(
                  p("The map above is essentially a heat map for immigration.  Each country is filled in a different shade to 
                    signify the number of immigrants from that country. The countries colored in dark have a large number of 
                    immigrants coming to the United States, while lighter colors mean fewer immigrants. Hovering over a country 
-                   will display the number of immigrants from that country.")
+                   will display the number of immigrants from that country."),
+                 br(),
+                 br(),
+                 br()
                )
              )
     ),
@@ -58,6 +61,27 @@ shinyUI(
                              value = 15,
                              animate=TRUE
                  ),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               hr(),
                  selectInput("text",
                            label = "Country",
                            choices = birthplaces$OdName
@@ -76,20 +100,23 @@ shinyUI(
                  p(textOutput("countryInfo")),
                  br(),
                  plotlyOutput("searchCountry"),
-                 br()
+                 hr()
                )
              )
     ),
     
     tabPanel("Plot",
-             mainPanel(
-               plotlyOutput("countrySumChart"),
+             mainPanel(width = 11,
+               plotlyOutput("countrySumChart",height = 550),
                br(),
                p("This bar chart displays the total yearly immigration into the United States.
                  Each color is for a different region of the world (for example, purple = Central America).
                  When hovering over a bar, the statistics for that region will be displayed for that year.
-                 Most regions have a steady flow of immigration, but Central America has major changes from year to year.")
-             )
+                 Most regions have a steady flow of immigration, but Central America has major changes from year to year."),
+             br(),
+             br(),
+             br()
+               )
     ),
     
     tabPanel("About",

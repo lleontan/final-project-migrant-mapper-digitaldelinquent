@@ -24,7 +24,10 @@ SearchByCountry <- function(d,country){
                size = ~population,
                sizes = c(3,35),
                hoverinfo = "text",
-               
+               line = list(color = "rgba(219,138,19,0.5)",
+                           shape = "spline",
+                           smothing = 1.3
+                           ),
                marker = list(
                              colorbar = list(
                                              title = "population",
@@ -34,6 +37,7 @@ SearchByCountry <- function(d,country){
                              ),
                              sizemode = "diameter",
                              opacity = 0.7
+                             
                )) %>%
        layout(title = paste0("Number of imigrants of ", country, " in each year"),
               xaxis = list(showgrid = FALSE,

@@ -62,10 +62,6 @@ shinyUI(
                              max=20,
                              value = 15,
                              animate=TRUE
-                 ),
-                 selectInput("text",
-                             label = "Country",
-                             choices = birthplaces$OdName
                  )
                ),
                mainPanel(
@@ -75,13 +71,25 @@ shinyUI(
                    you can move the slider to decide the number of countries to display the immigration statistics. 
                    Leaving the slider at one will display Mexico's immigration statistics and compare it to all the other
                    countries combined. Each time the slider is moved, the country with the next highest amount of 
-                   immigration will be displayed on the pie chart."),
-                 hr(),
-                 h3("Immigrant of specific country"),
-                 p(textOutput("countryInfo")),
-                 br(),
-                 plotlyOutput("searchCountry"),
-                 hr()
+                   immigration will be displayed on the pie chart.")
+               )
+             ),
+             tabsetPanel(
+               sidebarLayout(
+                 position = "right",
+                 sidebarPanel(
+                   selectInput("text",
+                               label = "Country",
+                               choices = birthplaces$OdName
+                   )
+                 ),
+                 mainPanel(
+                   h3("Immigrant of specific country"),
+                   p(textOutput("countryInfo")),
+                   br(),
+                   plotlyOutput("searchCountry"),
+                   hr()
+                 )
                )
              )
     ),

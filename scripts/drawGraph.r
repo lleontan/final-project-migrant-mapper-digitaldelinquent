@@ -176,6 +176,12 @@ getCountrySumGraph <- function(regions, countries.name) {
   return(p)
 }
 
+#Gets vector of countries without total or unknown
+getCountriesWithoutTotals<-function(){
+  set<-getCountrySum(birthplaces) %>% filter(OdName!="Total") %>% filter(OdName!="Unknown")
+  return(as.vector(set$OdName))
+}
+
 # Given a country name returns summary information.
 getCountryInformation <- function(country) {
   target.country <- birthplaces %>% filter(OdName == country)

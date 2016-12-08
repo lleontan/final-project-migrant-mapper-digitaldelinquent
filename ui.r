@@ -121,7 +121,7 @@ shinyUI(
                  selectInput(
                    inputId = "countrySumSelectedCountry",
                    label = h3("Country"),
-                   choices = c("None", as.vector(getCountrySum(birthplaces)$OdName[2:9])),
+                   choices = c("None", getCountriesWithoutTotals()),
                    selected = 1
                  ),
                  p("By selecting a country, It will displays a trace of the number of immigrant of that country.")

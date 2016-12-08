@@ -8,6 +8,7 @@ BuildMap_shiwen <- function(d,year){
   n <- as.character(data$population)
   n <- as.numeric(n)
   n <- is.na(n)
+
   
   g <- list(
     showframe = FALSE,
@@ -22,15 +23,17 @@ BuildMap_shiwen <- function(d,year){
       z = ~population, 
       zmin = 0,
       zmax = 10000,
+      hoverinfo = "text",
       text = ~hover, 
       locations = ~Country_Code,
       color = n,
       colorscale = "YlOrRd",
       reversescale = TRUE,
       colorbar = list(
-      ticklen = 5,
-      len = 1,
-      title = "Population"),
+                      thickness = 20,  
+                      ticklen = 5,
+                      len = 1,
+                      title = "Population"),
       marker = list(line = l)
     )  %>%
     layout(

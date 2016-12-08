@@ -1,13 +1,16 @@
 library(dplyr)
 library(plotly)
 library(shiny)
+<<<<<<< HEAD
 source("./scripts/drawGraph.r")
+=======
+source("./scripts/Updated Data.R")
+birthplaces <- data
+>>>>>>> c436dfb1e4f0585b51b36506378e877c023d9b68
 
-# year data within birthplaces
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]
 yearNames<-as.numeric(gsub("X",x=colnames(birthplaces[yearIndexes]), replacement=""))
-
 
 # for hoverinfo of countries https://gallery.shinyapps.io/093-plot-interaction-basic/
 shinyUI(
@@ -36,36 +39,77 @@ shinyUI(
                    to show the realistic scale and trends of worldwide immigration. We hope that
                    by showing the realities of immigration we may challenge preconceived
                    notions about the issue."), 
-                 plotlyOutput("map")
+                 br(),
+                 plotlyOutput("map"),
+                 br(),
+                 p("The map above is essentially a heat map for immigration.  Each country is filled in a different shade to 
+                   signify the number of immigrants from that country. The countries colored in dark have a large number of 
+                   immigrants coming to the United States, while lighter colors mean fewer immigrants. Hovering over a country 
+                   will display the number of immigrants from that country."),
+                 br(),
+                 br(),
+                 br()
                )
              )
     ),
-    tabPanel("Map",
+    tabPanel("Details",
              sidebarLayout(
                position = "right",
                sidebarPanel(
                  inputId="mapYear", 
-                 "Year", 
-                 min=yearNames[1], 
-                 max=yearNames[length(yearNames)],
-                 value = yearNames[1],
                  # add Widget
                  sliderInput(inputId="pie.country.count",
                              "Countries", 
                              min=1, 
-                             max=20,
-                             value = 1,
+                             max=30,
+                             value = 15,
                              animate=TRUE
+                 ),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               br(),
+               hr(),
+                 selectInput("text",
+                           label = "Country",
+                           choices = birthplaces$OdName
                  )
                ),
                mainPanel(
-                 plotlyOutput("total.pie.chart")
+                 plotlyOutput("total.pie.chart"),
+                 br(),
+                 p("This pie chart displays the portion of immigration for each country.  Using the Countries tool,
+                   you can move the slider to decide the number of countries to display the immigration statistics. 
+                   Leaving the slider at one will display Mexico's immigration statistics and compare it to all the other
+                   countries combined. Each time the slider is moved, the country with the next highest amount of 
+                   immigration will be displayed on the pie chart."),
+                 hr(),
+                 h3("Immigrant of specific country"),
+                 p(textOutput("countryInfo")),
+                 br(),
+                 plotlyOutput("searchCountry"),
+                 hr()
                )
              )
     ),
     
     tabPanel("Plot",
-             
                position = "right",
                sidebarPanel(
                  inputId="sumChartPanel", 
@@ -77,9 +121,17 @@ shinyUI(
                  )
                 )
               ,
-             mainPanel(
-               plotlyOutput("countrySumChart")
-             )
+             mainPanel(width = 11,
+               plotlyOutput("countrySumChart",height = 550),
+               br(),
+               p("This bar chart displays the total yearly immigration into the United States.
+                 Each color is for a different region of the world (for example, purple = Central America).
+                 When hovering over a bar, the statistics for that region will be displayed for that year.
+                 Most regions have a steady flow of immigration, but Central America has major changes from year to year."),
+             br(),
+             br(),
+             br()
+               )
     ),
     
     tabPanel("About",

@@ -140,7 +140,11 @@ shinyUI(
                  ". Migration statistics are important for the design of sensible migration policies, as immigrants can exert huge influence on social stability and economic development of United State.
                  By comparing the amount of immigrants flowing into US and economic gain of USA, it sheds light on the issue that whether migration has positive or negative impact to this country."),
                hr(),
-               h3("Developers")
+               h3("Developers"),
+               p("Xiuxing Lao"),
+               p("Leon Tan"),
+               p("Shiwen Zhu"),
+               p("Ben Kelleran")
              ),
              
              fluidRow(

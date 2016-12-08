@@ -100,7 +100,7 @@ shinyUI(
                    br(),
                     span("Collapse of the Soviet Union in 1991:Estonia, Unknown, Poland, Latvia"),
                    br(),
-                   span("Tienanmen Square 1989:Hongkong"),
+                   span("Tiananmen Square 1989:Hongkong"),
                    br(),
                    span("Immigration Act of 1990:Total, El Salvador, Mexico, Guatamala, Unknown"),
                    br(),

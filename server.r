@@ -23,6 +23,6 @@ shinyServer(function(input, output, session) {
     largestContributorsGraph(input$pie.country.count)
   })
   output$countrySumChart<-renderPlotly({
-    getCountrySumGraph(regions)
+    getCountrySumGraph(regions, input$countrySumSelectedCountry)
   })
 })

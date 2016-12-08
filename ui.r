@@ -1,6 +1,7 @@
 library(dplyr)
 library(plotly)
 library(shiny)
+source("./scripts/drawGraph.r")
 
 # year data within birthplaces
 yearIndexes<-grep("X", colnames(birthplaces))
@@ -64,6 +65,18 @@ shinyUI(
     ),
     
     tabPanel("Plot",
+             
+               position = "right",
+               sidebarPanel(
+                 inputId="sumChartPanel", 
+                 selectInput(
+                   inputId = "countrySumSelectedCountry",
+                   label = h3("Country"),
+                   choices = c("None", as.vector(getCountrySum()$OdName[2:10])),
+                   selected = 1
+                 )
+                )
+              ,
              mainPanel(
                plotlyOutput("countrySumChart")
              )

@@ -45,7 +45,7 @@ largestContributorsGraph<-function(countries.count){
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return(p)
 }
-getCountrySumGraph<-function(regions){
+getCountrySumGraph<-function(regions, countries.name){
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
   region.year.indexes<-grep("X", colnames(regions))
@@ -64,9 +64,10 @@ getCountrySumGraph<-function(regions){
   by.years$sum<-rowSums(by.years[,3:length(by.years)],na.rm = TRUE)
   colnames(by.years)<-c("year",country.names,"sum")
   
-  mexico.col<-birthplaces %>% filter(OdName=="Mexico")
-  mexico.col<-mexico.col %>%  select(grepYearIndexes(mexico.col)) %>% as.vector()
-  by.years<- by.years %>% mutate(mexico=as.numeric(mexico.col[1,1:nrow(by.years)]))#%>% filter(year==selectedYear)
+    print(countries.name)
+    m.col<-birthplaces %>% filter(OdName==countries.name)
+    m.col<-m.col %>%  select(grepYearIndexes(m.col)) %>% as.vector()
+    by.years[[countries.name]]<-as.numeric(m.col[1,1:nrow(by.years)])#%>% filter(year==selectedYear)
   
   #rownames(by.years)<-yearTable$OdName
   p<-plot_ly(
@@ -82,17 +83,20 @@ getCountrySumGraph<-function(regions){
       type = 'scatter',
       mode = 'lines',
       name = 'All',
-      line = list(color = '#45171D')
-      ) %>% add_trace(
+      line = list(color = '#3a00e9')
+      ) 
+  if(countries.name!="None"){
+  p<-p %>% add_trace(
     x=~year,
-    y=~mexico,
+    y=~by.years[,countries.name],
     type = 'scatter',
     mode = 'lines',
-    name = 'Mexico',
-    line = list(color = '#3a00e9'
+    name = countries.name,
+    line = list(color = '#CCCCCC'
                 ,width=3
-                )
-  ) %>% 
+                ))
+  }
+  p<-p %>% 
     layout(title = paste0("US Immigration Since 1980"),barmode="stack",
            hovermode="closest",
            xaxis=list(

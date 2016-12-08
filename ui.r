@@ -63,30 +63,9 @@ shinyUI(
                              value = 15,
                              animate=TRUE
                  ),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               br(),
-               hr(),
                  selectInput("text",
-                           label = "Country",
-                           choices = birthplaces$OdName
+                             label = "Country",
+                             choices = birthplaces$OdName
                  )
                ),
                mainPanel(
@@ -108,6 +87,7 @@ shinyUI(
     ),
     
     tabPanel("Plot",
+             sidebarLayout(
                position = "right",
                sidebarPanel(
                  inputId="sumChartPanel", 
@@ -116,20 +96,22 @@ shinyUI(
                    label = h3("Country"),
                    choices = c("None", as.vector(getCountrySum(birthplaces)$OdName[2:9])),
                    selected = 1
-                 )
-                )
-              ,
-             mainPanel(width = 11,
-               plotlyOutput("countrySumChart",height = 550),
-               br(),
-               p("This bar chart displays the total yearly immigration into the United States.
-                 Each color is for a different region of the world (for example, purple = Central America).
-                 When hovering over a bar, the statistics for that region will be displayed for that year.
-                 Most regions have a steady flow of immigration, but Central America has major changes from year to year."),
-             br(),
-             br(),
-             br()
+                 ),
+                 p("By selecting a country, It will displays a trace of the number of immigrant of that country.")
                )
+               ,
+               mainPanel(
+                         plotlyOutput("countrySumChart"),
+                         br(),
+                         p("This bar chart displays the total yearly immigration into the United States.
+                           Each color is for a different region of the world (for example, purple = Central America).
+                           When hovering over a bar, the statistics for that region will be displayed for that year.
+                           Most regions have a steady flow of immigration, but Central America has major changes from year to year."),
+                         br(),
+                         br(),
+                         br()
+               )
+             )
     ),
     
     tabPanel("About",
@@ -142,7 +124,11 @@ shinyUI(
                  ". Migration statistics are important for the design of sensible migration policies, as immigrants can exert huge influence on social stability and economic development of United State.
                  By comparing the amount of immigrants flowing into US and economic gain of USA, it sheds light on the issue that whether migration has positive or negative impact to this country."),
                hr(),
-               h3("Developers")
+               h3("Developers"),
+               p("Xiuxing Lao"),
+               p("Leon Tan"),
+               p("Shiwen Zhu"),
+               p("Ben Kelleran")
              ),
              
              fluidRow(

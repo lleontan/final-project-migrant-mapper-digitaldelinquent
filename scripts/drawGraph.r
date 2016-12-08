@@ -1,16 +1,5 @@
 library(dplyr)
 
-# Sets global values for-
-# yearindexes within regions dataframe.
-# regions values per year with only the type and name.
-# A vector of the names of all the years.
-setYearData <- function() {
-  yearIndexes <<- grep("X", colnames(regions))
-  yearTable <<- regions[c(1, 3, yearIndexes)]
-  yearNames <<- as.numeric(gsub("X",
-                                x = colnames(regions[yearIndexes]),
-                                replacement = ""))
-}
 grepYearIndexes <- function(data.set) {
   #returns vector of year indexes for the given dataset.
   return(grep("X", colnames(data.set)))
@@ -184,20 +173,24 @@ getCountriesWithoutTotals<-function(){
 
 # Given a country name returns summary information.
 getCountryInformation <- function(country) {
-  target.country <- birthplaces %>% filter(OdName == country)
-  info <-
-    paste0(
-      "The total amount of immigrants from ",
-      country,
-      " between the years of 1980-2013 is ",
-      target.country$mag,
-      ". The nation of ",
-      country,
-      " is a ",
-      target.country$DevName,
-      " in ",
-      target.country$AreaName,
-      "."
-    )
+  target.country <- getCountrySum(birthplaces) %>% filter(OdName == country)
+  info<- paste0(
+    "The total amount of immigrants from ",
+    country,
+    " between the years of 1980-2013 is ",
+    target.country$mag,
+    ". The nation of ",
+    country,
+    " is a ",
+    target.country$DevName,
+    " in ",
+    target.country$AreaName,
+    "."
+  )
+  if(country=="Total"){
+    info<-paste0("From 1980 to 2013, ",target.country$mag," immigrants arrived in the United States.")
+  } else if(country=="Unknown"){
+    info<-paste0("From 1980 to 2013, ",target.country$mag," immigrants arrived from unknown locations in the United States.")
+  }
   return(info)
 }

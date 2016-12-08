@@ -80,7 +80,8 @@ shinyUI(
                  sidebarPanel(
                    selectInput("text",
                                label = "Country",
-                               choices = birthplaces$OdName
+                               choices = birthplaces$OdName,
+                              selected="Total"
                    )
                  ),
                  mainPanel(

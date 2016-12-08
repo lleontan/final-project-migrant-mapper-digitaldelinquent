@@ -1,3 +1,4 @@
+# Required library
 library(dplyr)
 
 # Sets global values for-
@@ -184,16 +185,16 @@ getCountriesWithoutTotals<-function(){
 
 # Given a country name returns summary information.
 getCountryInformation <- function(country) {
-  target.country <- birthplaces %>% filter(OdName == country)
+  target.country <- getCountrySum(birthplaces) %>% filter(OdName == country)
   info <-
     paste0(
-      "The total amount of immigrants from ",
+      "The total number of immigrants from ",
       country,
-      " between the years of 1980-2013 is ",
+      " between 1980 and 2013 is ",
       target.country$mag,
       ". The nation of ",
       country,
-      " is a ",
+      " is one of the ",
       target.country$DevName,
       " in ",
       target.country$AreaName,

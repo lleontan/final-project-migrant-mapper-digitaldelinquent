@@ -1,10 +1,13 @@
+# Libraries required
 library(plotly)
 library(dplyr)
 
+# Bubble chart
 SearchByCountry <- function(d,country){
   yearIndexes<-grep("X", colnames(d))
   yearNames<-as.numeric(gsub("X",x=colnames(d[yearIndexes]), replacement=""))
   
+  # Displays years without commas (ex. 1,980 to 1980)
   d <- d %>%
        filter(OdName == country)
   x <- d[yearIndexes]
@@ -12,7 +15,7 @@ SearchByCountry <- function(d,country){
   yearNames <- as.numeric(yearNames)
   m <- data.frame(yearNames,population) 
   m <- na.exclude(m)
-  
+  # Sets up hover and color bar and sets x and y axis in the bubble chart
   p <- plot_ly(m,
                x = ~yearNames,
                y = ~population,
@@ -39,7 +42,8 @@ SearchByCountry <- function(d,country){
                              opacity = 0.7
                              
                )) %>%
-       layout(title = paste0("Number of imigrants of ", country, " in each year"),
+    # sets up the layout of the bubble chart   
+    layout(title = paste0("Number of immigrants from ", country, " each year"),
               xaxis = list(showgrid = FALSE,
                            ticklen = 3,
                            title = "year"),

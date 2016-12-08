@@ -1,6 +1,8 @@
+# Required libraries
 library(dplyr)
 library(plotly)
 
+# Builds the world map
 BuildMap_shiwen <- function(d,year){
   l <- list(color = toRGB("grey"), width = 0.5)
   year <- paste0("X",year)
@@ -9,14 +11,14 @@ BuildMap_shiwen <- function(d,year){
   n <- as.numeric(n)
   n <- is.na(n)
 
-  
+  # Sets details of the map
   g <- list(
     showframe = FALSE,
     showcoastlines = FALSE,
     projection = list(type = 'Mercator')
   )     
   data$hover <- with(data,paste(OdName,'<br>',"Population",population))
-  
+  # Creates data hover and color bar to provide a scale
   p <- data %>%
       plot_geo() %>%
     add_trace(
@@ -36,9 +38,11 @@ BuildMap_shiwen <- function(d,year){
                       title = "Population"),
       marker = list(line = l)
     )  %>%
+    # Title of the Map
     layout(
-      title = 'Where they come from<br>(Hover for breakdown)',
+      title = 'Immigration Heat Map',
       geo = g
     )
   return(p)
 }
+

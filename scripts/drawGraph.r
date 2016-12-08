@@ -90,7 +90,7 @@ getCountrySumGraph<-function(regions, countries.name){
     type = 'scatter',
     mode = 'lines',
     name = countries.name,
-    line = list(color = '#CCCCCC'
+    line = list(color = '#000000'
                 ,width=3
                 ))
   }

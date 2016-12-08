@@ -22,7 +22,9 @@ shinyUI(
                              min=yearNames[1], 
                              max=yearNames[length(yearNames)],
                              value = yearNames[1],
-                             animate=TRUE
+                             animate=TRUE,
+                             sep=""
+                             
                  )
                ),
                mainPanel(

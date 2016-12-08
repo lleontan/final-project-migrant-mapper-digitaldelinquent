@@ -63,7 +63,6 @@ getCountrySumGraph<-function(regions, countries.name){
   by.years$sum<-rowSums(by.years[,3:length(by.years)],na.rm = TRUE)
   colnames(by.years)<-c("year",country.names,"sum")
   
-    print(countries.name)
     m.col<-birthplaces %>% filter(OdName==countries.name)
     m.col<-m.col %>%  select(grepYearIndexes(m.col)) %>% as.vector()
     by.years[[countries.name]]<-as.numeric(m.col[1,1:nrow(by.years)])#%>% filter(year==selectedYear)

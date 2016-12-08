@@ -1,12 +1,8 @@
 library(dplyr)
 library(plotly)
 library(shiny)
-<<<<<<< HEAD
 source("./scripts/drawGraph.r")
-=======
 source("./scripts/Updated Data.R")
-birthplaces <- data
->>>>>>> c436dfb1e4f0585b51b36506378e877c023d9b68
 
 yearIndexes<-grep("X", colnames(birthplaces))
 yearTable<-birthplaces[c(1,3,yearIndexes)]
@@ -116,7 +112,7 @@ shinyUI(
                  selectInput(
                    inputId = "countrySumSelectedCountry",
                    label = h3("Country"),
-                   choices = c("None", as.vector(getCountrySum()$OdName[2:10])),
+                   choices = c("None", as.vector(getCountrySum(birthplaces)$OdName[2:10])),
                    selected = 1
                  )
                 )

@@ -44,12 +44,7 @@ largestContributorsGraph<-function(countries.count, birthplaces){
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return(p)
 }
-<<<<<<< HEAD
 getCountrySumGraph<-function(regions, countries.name){
-=======
-
-getCountrySumGraph<-function(regions){
->>>>>>> c436dfb1e4f0585b51b36506378e877c023d9b68
   full.regions<<-regions %>% filter(grepl("Total",AreaName))
   
   region.year.indexes<-grep("X", colnames(regions))

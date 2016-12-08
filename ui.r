@@ -112,7 +112,7 @@ shinyUI(
                  selectInput(
                    inputId = "countrySumSelectedCountry",
                    label = h3("Country"),
-                   choices = c("None", as.vector(getCountrySum(birthplaces)$OdName[2:10])),
+                   choices = c("None", as.vector(getCountrySum(birthplaces)$OdName[2:9])),
                    selected = 1
                  )
                 )

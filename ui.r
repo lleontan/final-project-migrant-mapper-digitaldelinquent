@@ -1,4 +1,6 @@
 # Library for required packages and source for required files
+library(shiny)
+library(plotly)
 source("./scripts/drawGraph.r")
 
 # Countries HoverInfo https://gallery.shinyapps.io/093-plot-interaction-basic/

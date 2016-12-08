@@ -139,18 +139,7 @@ getCountrySumGraph <- function(regions, countries.name) {
       name = 'All',
       line = list(color = '#3a00e9')
     )
-  # Adding country trace.
-  if (countries.name != "None") {
-    p <- p %>% add_trace(
-      x =  ~ year,
-      y =  ~ by.years[, countries.name],
-      type = 'scatter',
-      mode = 'lines',
-      name = countries.name,
-      line = list(color = '#000000'
-                  , width = 5)
-    )
-  }
+
   p <- p %>%
     layout(
       title = paste0("US Immigration Since 1980"),
@@ -171,6 +160,18 @@ getCountrySumGraph <- function(regions, countries.name) {
     p <- p %>% add_trace(y =  by.years[, i],
                       name = colnames(by.years)[i],
                       showlegend = FALSE)
+  }
+  # Adding country trace.
+  if (countries.name != "None") {
+    p <- p %>% add_trace(
+      x =  ~ year,
+      y =  ~ by.years[, countries.name],
+      type = 'scatter',
+      mode = 'lines',
+      name = countries.name,
+      line = list(color = '#000000'
+                  , width = 5)
+    )
   }
   return(p)
 }

@@ -1,12 +1,8 @@
-# Required libraries
-library(dplyr)
-library(plotly)
-
 # Builds the world map
-BuildMap_shiwen <- function(d,year){
+BuildMap_shiwen <- function(data,year){
   l <- list(color = toRGB("grey"), width = 0.5)
   year <- paste0("X",year)
-  data <- mutate_(data,population = year)
+  data <- mutate_(data, population = year)
   n <- as.character(data$population)
   n <- as.numeric(n)
   n <- is.na(n)

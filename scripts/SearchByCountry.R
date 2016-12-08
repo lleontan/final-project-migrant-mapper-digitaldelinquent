@@ -1,7 +1,3 @@
-# Libraries required
-library(plotly)
-library(dplyr)
-
 # Bubble chart
 SearchByCountry <- function(d,country){
   yearIndexes<-grep("X", colnames(d))

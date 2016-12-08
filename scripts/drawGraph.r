@@ -1,10 +1,8 @@
-# Required library
-library(dplyr)
-
 grepYearIndexes <- function(data.set) {
   #returns vector of year indexes for the given dataset.
   return(grep("X", colnames(data.set)))
 }
+
 getCountrySum <- function(birthplaces) {
   #Returns a dataset with an appended column for total immigrants.
   new.data <-
@@ -15,6 +13,7 @@ getCountrySum <- function(birthplaces) {
   new.data <- new.data %>% arrange(-mag)
   return(new.data)
 }
+
 largestContributorsGraph <- function(countries.count, birthplaces) {
   # Returns a plotly piechart of the top immigrant countries percentage.
   countries.count = countries.count + 1
@@ -74,6 +73,7 @@ largestContributorsGraph <- function(countries.count, birthplaces) {
     )
   return(p)
 }
+
 getCountrySumGraph <- function(regions, countries.name) {
   # Returns stacked barchart with line traces for given country.
   # Takes dataset containing regions,

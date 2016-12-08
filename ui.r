@@ -1,9 +1,5 @@
 # Library for required packages and source for required files
-library(dplyr)
-library(plotly)
-library(shiny)
 source("./scripts/drawGraph.r")
-source("./scripts/Updated Data.R")
 
 # Countries HoverInfo https://gallery.shinyapps.io/093-plot-interaction-basic/
 # Creates tab at the top of the page and a widget for the map that allows the

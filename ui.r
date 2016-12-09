@@ -111,7 +111,7 @@ shinyUI(
                    br(),
                    span("Interesting events:"),
                    br(),
-                   span("Peak of FARC power in Columbia in the 2000's."),
+                   span("Peak of FARC power in Columbia in the mid 2000's."),
                    br(),
                     span("Collapse of the Soviet Union in 1991: Estonia, Unknown, Poland, Latvia"),
                    br(),
